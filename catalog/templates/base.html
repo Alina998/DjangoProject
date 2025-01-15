@@ -17,19 +17,13 @@
 </div>
 
 {% include 'includes/header.html' %}
-
-<div class="container">
-    <div class="row text-center">
-        {% for product in products %}
-            <div class="col-md-4">
-                {% include 'includes/product_card.html' %}
-            </div>
-        {% endfor %}
+    {% include 'menu.html' %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
     </div>
-</div>
-
-{% include 'includes/footer.html' %}
-</div>
-
+    <footer>
+        <p>© 2025 Магазин</p>
+    </footer>
 </body>
 </html>

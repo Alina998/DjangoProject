@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    {% for product in products %}
+        <h1>{{ product.name }}</h1>
+        <p><strong>Описание:</strong> {{ product.description }}</p>
+        <p><strong>Цена:</strong> {{ product.price }} руб.</p>
+        <p><strong>Категория:</strong> {{ product.category.name }}</p>
+        <p><strong>Дата создания:</strong> {{ product.created_at }}</p>
+    {% endfor %}
+    <a href="/home/">Назад к списку товаров</a>
+    <a href="/add_product/">Добавить товар</a>
+{% endblock %}
