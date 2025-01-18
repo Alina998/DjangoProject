@@ -11,19 +11,19 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
     <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
     <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="/product_info/">Каталог</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:home' %}">Каталог</a>
         <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
     </nav>
 </div>
 
 {% include 'includes/header.html' %}
-    {% include 'menu.html' %}
-    <div class="container">
-        {% block content %}
-        {% endblock %}
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
     </div>
-    <footer>
-        <p>© 2025 Магазин</p>
-    </footer>
+
+{% include 'includes/footer.html' %}
+
 </body>
-</html>
+</html

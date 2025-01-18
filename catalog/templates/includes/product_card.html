@@ -1,10 +1,12 @@
-<div class="card-header">
-    <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
-</div>
-<div class="card-body">
-    <h1 class="card-title pricing-card-title">{{ product.price }} руб. </h1>
+<div class="card">
+    <div class="card-header">
+        <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+    </div>
+    <div class="card-body">
+        <h1 class="card-title pricing-card-title">{{ product.price }} руб.</h1>
         <p class="list-unstyled mt-3 mb-4 text-start m-3">
             {{ product.description|truncatechars:100 }}
         </p>
-    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+        <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:product_info' product.id %}">Посмотреть</a>
+    </div>
 </div>

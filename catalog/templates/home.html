@@ -1,35 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Skystore</title>
-    <!-- Подключите статичеcкие файлы со стилями Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
-    <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="/product_info/">Каталог</a>
-        <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
-    </nav>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row text-center">
+    {% for product in products %}
+        <div class="col-md-4">
+            {% include 'includes/product_card.html' with product=product %}
+        </div>
+    {% endfor %}
 </div>
-
-{% include 'includes/header.html' %}
-
-<div class="container">
-    <div class="row text-center">
-        {% for product in products %}
-            <div class="col-md-4">
-                {% include 'includes/product_card.html' %}
-            </div>
-        {% endfor %}
-    </div>
-</div>
-
-{% include 'includes/footer.html' %}
-</div>
-
-</body>
-</html>
+{% endblock %}
