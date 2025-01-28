@@ -1,6 +1,6 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
 from .models import BlogPost
+from django.urls import reverse_lazy
 
 
 class BlogPostListView(ListView):
@@ -27,7 +27,7 @@ class BlogPostCreateView(CreateView):
     model = BlogPost
     fields = ['title', 'content', 'preview_image', 'is_published']
     template_name = 'blog_form.html'
-    success_url = '/'  # перенаправление после создания
+    success_url = reverse_lazy('blog:blog_list')  # перенаправление после создания
 
 class BlogPostUpdateView(UpdateView):
     model = BlogPost

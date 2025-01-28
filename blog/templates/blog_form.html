@@ -1,31 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="row">
-        {% for object in object_list %}
-            <div class="col-md-4">
-                <h2>{{ object.title }}</h2>
-                <p>{{ object.content|truncatewords:30 }}</p>
-                <p><a class="btn btn-secondary" href="{% url 'blog:blog_detail' object.pk %}" role="button">Детали &raquo;</a></p>
-            </div>
-        {% endfor %}
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-3">
             <div class="card">
                 <div class="card-header">
                     Опубликовать запись
                 </div>
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <input name="name" class="form-control mb-2" placeholder="Имя" type="text" required>
-                        <input name="email" class="form-control mb-2" placeholder="Email" type="email" required>
-                        <textarea name="message" class="form-control mb-2" placeholder="Сообщение" required></textarea>
+                        {{ form.as_p }}
                         <input class="btn btn-primary w-100" type="submit" value="Отправить" />
                     </form>
                 </div>
             </div>
-        </div>
     </div>
 {% endblock %}
