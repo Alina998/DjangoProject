@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Category(models.Model):
@@ -11,6 +12,29 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+
+FORBIDDEN_WORDS = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+
+
+def validate_forbidden_words(value):
+    for word in FORBIDDEN_WORDS:
+        if word.lower() in value.lower():
+            raise ValidationError(f'Слово "{word}" запрещено.')
+
+def validate_price(value):
+    if value < 0:
+        raise ValidationError(f'Цена не должна быть отрицательной: {value}')
+
+def validate_image(image):
+    if image:
+        valid_formats = ['image/jpeg', 'image/png']
+        if image.content_type not in valid_formats:
+            raise ValidationError('Формат изображения должен быть JPEG или PNG.')
+
+        max_size = 5 * 1024 * 1024  # 5 MB
+        if image.size > max_size:
+            raise ValidationError('Размер изображения не должен превышать 5 МБ.')
 
 
 class Product(models.Model):
@@ -28,3 +52,23 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        validate_forbidden_words(title)
+        return title
+
+    def clean_description(self):
+        description = self.cleaned_data['description']
+        validate_forbidden_words(description)
+        return description
+
+    def clean_price(self):
+        price = self.cleaned_data['price']
+        validate_price(price)
+        return price
+
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        validate_image(image)
+        return image

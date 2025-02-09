@@ -24,7 +24,7 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'description', 'image', 'category', 'price']
 
-class AddProductView(CreateView):
+class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'add_product.html'
@@ -33,3 +33,12 @@ class AddProductView(CreateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'update_product.html'
+    success_url = '/'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
