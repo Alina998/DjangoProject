@@ -52,23 +52,3 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
-
-    def clean_title(self):
-        title = self.cleaned_data['title']
-        validate_forbidden_words(title)
-        return title
-
-    def clean_description(self):
-        description = self.cleaned_data['description']
-        validate_forbidden_words(description)
-        return description
-
-    def clean_price(self):
-        price = self.cleaned_data['price']
-        validate_price(price)
-        return price
-
-    def clean_image(self):
-        image = self.cleaned_data['image']
-        validate_image(image)
-        return image
