@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ product.name }}</h1>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-3">
+    <p><strong>Описание:</strong> {{ product.description }}</p>
+    <p><strong>Цена:</strong> {{ product.price }} руб.</p>
+    <p><strong>Категория:</strong> {{ product.category.name }}</p>
+    <p><strong>Дата создания:</strong> {{ product.created_at }}</p>
+    <a class="btn btn-primary" href="{% url 'catalog:home' %}">Назад к списку товаров</a>
+    <a class="btn btn-secondary" href="{% url 'catalog:add_product' %}">Добавить товар</a>
+    <a class="btn btn-warning" href="{% url 'catalog:update_product' product.pk %}">Редактировать товар</a>
+{% endblock %}

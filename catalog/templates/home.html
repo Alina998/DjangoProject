@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row text-center">
+    {% for product in products %}
+        <div class="col-md-4">
+            {% include 'includes/product_card.html' with product=product %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
