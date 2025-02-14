@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Список блогов</h1>
+    <a href="{% url 'blog:blog_add' %}">Добавить новый пост</a>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2><a href="{% url 'blog:blog_detail' post.pk %}">{{ post.title }}</a></h2>
+                <p>{{ post.content|truncatewords:30 }}</p>
+                <p><em>Просмотры: {{ post.views_count }}</em></p>
+                <p><a href="{% url 'blog:blog_edit' post.pk %}">Редактировать</a></p>
+            </li>
+        {% empty %}
+            <li>Нет доступных постов.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
