@@ -27,7 +27,7 @@ class RegisterView(FormView):
 class CustomLoginView(LoginView):
     template_name = 'users/login.html'
     form_class = CustomAuthenticationForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('catalog:home')
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('logout')
+    next_page = reverse_lazy('catalog:home')
