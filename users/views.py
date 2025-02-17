@@ -22,7 +22,7 @@ class RegisterView(FormView):
         message = 'Спасибо, что зарегистрировались в нашем сервисе!'
         from_email = 'alina.pastaeva@yandex.ru'
         recipient_list = [user_email]
-        send_mail(subject, message, recipient_list)
+        send_mail(subject, message, from_email, recipient_list)
 
 class CustomLoginView(LoginView):
     template_name = 'users/login.html'

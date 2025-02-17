@@ -102,9 +102,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'goodbye'
-LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'catalog/templates/home'
+LOGOUT_REDIRECT_URL = 'users/templates/users/logout'
+LOGIN_URL = 'users/templates/users/login'
 
 
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
