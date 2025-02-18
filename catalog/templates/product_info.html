@@ -12,4 +12,11 @@
     <a class="btn btn-primary" href="{% url 'catalog:home' %}">Назад к списку товаров</a>
     <a class="btn btn-secondary" href="{% url 'catalog:add_product' %}">Добавить товар</a>
     <a class="btn btn-warning" href="{% url 'catalog:update_product' product.pk %}">Редактировать товар</a>
+{% if user.has_perm('catalog.can_unpublish_product') %}
+    <a class="btn btn-warning" href="{% url 'unpublish_product' product.pk %}">Отменить публикацию</a>
+{% endif %}
+
+{% if user.has_perm('catalog.delete_product') %}
+    <a class="btn btn-warning" href="{% url 'delete_product' product.pk %}">Удалить продукт</a>
+{% endif %}
 {% endblock %}

@@ -42,6 +42,11 @@ class ProductForm(ModelForm):
             'placeholder': 'Укажите цену продукта'  # Текст подсказки внутри поля
         })
 
+        self.fields['is_published'].widget.attrs.update({
+            'class': 'form-control',  # Добавление CSS-класса для стилизации поля
+            'placeholder': 'Укажите статус продукта'  # Текст подсказки внутри поля
+        })
+
     def clean_name(self):
         name = self.cleaned_data.get('name')
         self.validate_forbidden_words(name)

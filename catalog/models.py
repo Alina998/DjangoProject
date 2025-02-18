@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -45,10 +46,13 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='Цена за покупку', help_text='Укажите цену продукта')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
-
-    def __str__(self):
-        return self.name
+    is_published = models.BooleanField(default=False)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+        permissions = [("can_unpublish_product", "Can unpublish product"), ("can_delete_product", "Can delete product"),]
+
+    def __str__(self):
+        return self.name
