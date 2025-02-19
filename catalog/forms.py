@@ -7,44 +7,39 @@ from django.core.exceptions import ValidationError
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'image', 'category', 'price']
+        fields = ['name', 'description', 'image', 'category', 'price', 'is_published']
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
 
-        # Настройка атрибутов виджета для поля 'name'
         self.fields['name'].widget.attrs.update({
-            'class': 'form-control',  # Добавление CSS-класса для стилизации поля
-            'placeholder': 'Введите наименование продукта'  # Текст подсказки внутри поля
+            'class': 'form-control',
+            'placeholder': 'Введите наименование продукта'
         })
 
-        # Настройка атрибутов виджета для поля 'description'
         self.fields['description'].widget.attrs.update({
-            'class': 'form-control',  # Добавление CSS-класса для стилизации поля
-            'placeholder': 'Введите описание продукта'  # Текст подсказки внутри поля
+            'class': 'form-control',
+            'placeholder': 'Введите описание продукта'
         })
 
-        # Настройка атрибутов виджета для поля 'image'
         self.fields['image'].widget.attrs.update({
-            'class': 'form-control-file',  # Добавление CSS-класса для стилизации поля
-            'placeholder': 'Загрузите фото'  # Текст подсказки внутри поля
+            'class': 'form-control-file',
+            'placeholder': 'Загрузите фото'
         })
 
-        # Настройка атрибутов виджета для поля 'category'
         self.fields['category'].widget.attrs.update({
-            'class': 'form-control',  # Добавление CSS-класса для стилизации поля
-            'placeholder': 'Укажите категорию продукта'  # Текст подсказки внутри поля
+            'class': 'form-control',
+            'placeholder': 'Укажите категорию продукта'
         })
 
-        # Настройка атрибутов виджета для поля 'price'
         self.fields['price'].widget.attrs.update({
-            'class': 'form-control',  # Добавление CSS-класса для стилизации поля
-            'placeholder': 'Укажите цену продукта'  # Текст подсказки внутри поля
+            'class': 'form-control',
+            'placeholder': 'Укажите цену продукта'
         })
 
         self.fields['is_published'].widget.attrs.update({
-            'class': 'form-control',  # Добавление CSS-класса для стилизации поля
-            'placeholder': 'Укажите статус продукта'  # Текст подсказки внутри поля
+            'class': 'form-check-input',
+            'placeholder': 'Укажите статус продукта'
         })
 
     def clean_name(self):

@@ -102,8 +102,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
-LOGIN_REDIRECT_URL = 'catalog/templates/home'
-LOGOUT_REDIRECT_URL = 'users/templates/users/logout'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'users/templates/users/login'
 
 
