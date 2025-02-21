@@ -17,7 +17,9 @@
     </nav>
     <nav class="ms-5">
         {% if user.is_authenticated %}
-            <a class="btn btn-secondary" href="{% url 'users:logout' %}">Выйти</a>
+            <form action="{% url 'users:logout' %}" method="post" style="display:inline;"> {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Выйти</button>
+            </form>
         {% else %}
             <a class="btn btn-secondary" href="{% url 'users:register' %}">Регистрация</a>
             <a class="btn btn-secondary" href="{% url 'users:login' %}">Войти</a>

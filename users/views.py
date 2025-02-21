@@ -1,7 +1,9 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
+from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+from django.shortcuts import redirect
 from django.core.mail import send_mail
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
@@ -29,5 +31,7 @@ class CustomLoginView(LoginView):
     form_class = CustomAuthenticationForm
     success_url = reverse_lazy('catalog:home')
 
-class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('catalog:home')
+class CustomLogoutView(View):
+    def post(self, request):
+        logout(request)
+        return redirect('catalog:home')

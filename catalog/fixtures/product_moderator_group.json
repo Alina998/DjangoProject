@@ -1,4 +1,4 @@
 [{"model": "auth.group", "pk": 1,
-  "fields": {"name": "Editors", "permissions":
+  "fields": {"name": "Editors", "permissions":pyth
       [{"model": "catalog", "codename": "can_unpublish_product"},
       {"model": "catalog", "codename": "can_delete_product"}]}}]
