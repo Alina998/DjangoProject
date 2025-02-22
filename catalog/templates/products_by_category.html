@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Продукты в категории: {{ products.first.category.name }}</h1>
+
+<ul>
+    {% for product in products %}
+        <li>
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+            <p>Цена: {{ product.price }} руб.</p>
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100">
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>Нет продуктов в этой категории.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'catalog:home' %}">Вернуться на главную</a>
+{% endblock %}
