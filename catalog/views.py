@@ -3,12 +3,16 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from catalog.forms import ProductForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from catalog.services import get_products_from_cache, get_products_by_category
 
 
 class HomeView(ListView):
     model = Product
     template_name = 'home.html'
     context_object_name = 'products'
+
+    def get_queryset(self):
+        return get_products_from_cache()
 
 class ContactsView(TemplateView):
     template_name = 'contacts.html'
@@ -75,3 +79,12 @@ class ProductUnpublishView(LoginRequiredMixin, PermissionRequiredMixin, UpdateVi
     def test_func(self):
         product = self.get_object()
         return self.request.user == product.owner
+
+class ProductsByCategoryView(ListView):
+    model = Product
+    template_name = 'products_by_category.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('category_id')
+        return get_products_by_category(category_id)
